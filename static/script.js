@@ -8,8 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const tweetInput = document.getElementById('tweetInput');
         const tweetText = tweetInput.value;
 
-        console.log("Tweet input value:", tweetText); // Debug log
-
         if (!tweetText) {
             console.log("Tweet input is empty."); // Handle empty input
             return;
@@ -23,10 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 body: JSON.stringify({ tweetText })
             })
-            .then(response => {
-                console.log("Response status:", response.status);
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
                 console.log("Server response:", data);
 
@@ -63,7 +58,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Clear input field
                 tweetInput.value = '';
+
+                // Show a notification if prediction is 1 (Suicidal)
+                if (data.prediction === 1) {
+                    showHelpNotification();
+                }
             })
             .catch(error => console.error("Error sending tweet:", error));
     });
+
+    function showHelpNotification() {
+        // Create a notification element
+        const notification = document.createElement('div');
+        notification.className = 'help-notification';
+        notification.innerText = 'Do you need help?';
+
+        // Style the notification
+        notification.style.position = 'fixed';
+        notification.style.bottom = '20px';
+        notification.style.right = '20px';
+        notification.style.backgroundColor = '#f44336';
+        notification.style.color = '#fff';
+        notification.style.padding = '15px 20px';
+        notification.style.borderRadius = '5px';
+        notification.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+        notification.style.zIndex = '1000';
+
+        // Append to the body
+        document.body.appendChild(notification);
+
+        // Automatically remove the notification after 5 seconds
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 5000);
+    }
 });

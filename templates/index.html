@@ -181,7 +181,7 @@
         const messagesOption = document.getElementById('messagesOption');
         const homeContent = document.getElementById('homeContent');
         const messageContainer = document.getElementById('messageContainer');
-        // Get the Tweet button and message container
+        // Get the Tweet button
         const tweetButton = document.querySelector('.sidebar_tweet');
 
         // Event listener for switching to Messages
@@ -197,8 +197,6 @@
             homeContent.style.display = 'block';
             messageContainer.style.display = 'none';
         });
-
-
 
         // Event listener for the Tweet button
         tweetButton.addEventListener('click', function() {
@@ -224,6 +222,9 @@
 
             // Debugging: Check if the message container now contains the new message
             console.log('Message container contents:', messageContainer.innerHTML);
+
+            // Check if the message is visible
+            console.log('Message container display:', messageContainer.style.display);
         });
     </script>
 

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo Twitter - Messages</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Material+Symbols+Filled" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
+    <style>
+        .message-container {
+            margin-top: 20px;
+        }
+        
+        .message {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+        
+        .message-header {
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- sidebar -->
+    <div class="sidebar">
+        <span class="material-symbols-outlined" id="pseudoIcon">
+            raven
+        </span>
+
+        <div class="sidebarOption">
+            <span class="material-symbols-outlined">
+                home
+            </span>
+            <h2><a href="index.html">Home</a></h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-symbols-outlined">
+                search
+            </span>
+            <h2>Explore</h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-symbols-outlined">
+                notifications
+            </span>
+            <h2>Notifications</h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-symbols-outlined">
+                mail
+            </span>
+            <h2><a href="messages.html">Messages</a></h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-symbols-outlined">
+                bookmark
+            </span>
+            <h2>Bookmarks</h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-symbols-outlined">
+                list_alt
+            </span>
+            <h2>Lists</h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-symbols-outlined">
+                person_outline
+            </span>
+            <h2>Profile</h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-symbols-outlined">
+                more_horiz
+            </span>
+            <h2>More</h2>
+        </div>
+
+        <button class="sidebar_tweet">Tweet</button>
+
+    </div>
+    <!-- sidebar -->
+
+    <!-- Messages -->
+    <div class="message-container" id="messageContainer">
+        <div class="message">
+            <div class="message-header">User 1</div>
+            <div class="message-body">Hey, how's it going?</div>
+        </div>
+        <div class="message">
+            <div class="message-header">User 2</div>
+            <div class="message-body">Just wanted to check in!</div>
+        </div>
+    </div>
+    <!-- Messages -->
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

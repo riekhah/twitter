@@ -71,18 +71,27 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create a notification element
         const notification = document.createElement('div');
         notification.className = 'help-notification';
-        notification.innerText = 'Do you need help?';
+        notification.innerHTML = `
+            <h1 style="margin: 0; font-size: 1.5em; color: #333;">Help is available</h1>
+            <p style="margin: 5px 0; font-size: 1em; color: #555;">Speak with someone today</p>
+            <p style="margin: 5px 0; font-size: 1em; color: #555;"><strong>National Center for Mental Health Crisis Hotline</strong></p>
+            <p style="margin: 5px 0; font-size: 1em; color: #555;">Languages: English, Filipino</p>
+            <p style="margin: 5px 0; font-size: 1em; color: #555;">Hours: Available 24/7</p>
+            <p style="margin: 5px 0; font-size: 1.2em; color: #e74c3c; font-weight: bold;">Call: 0966-351-4518</p>
+        `;
 
         // Style the notification
         notification.style.position = 'fixed';
-        notification.style.bottom = '20px';
-        notification.style.right = '20px';
-        notification.style.backgroundColor = '#f44336';
-        notification.style.color = '#fff';
-        notification.style.padding = '15px 20px';
-        notification.style.borderRadius = '5px';
+        notification.style.top = '50%';
+        notification.style.left = '50%';
+        notification.style.transform = 'translate(-50%, -50%)';
+        notification.style.backgroundColor = '#ffffff';
+        notification.style.padding = '20px';
+        notification.style.borderRadius = '10px';
         notification.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+        notification.style.textAlign = 'center';
         notification.style.zIndex = '1000';
+        notification.style.width = '300px';
 
         // Append to the body
         document.body.appendChild(notification);

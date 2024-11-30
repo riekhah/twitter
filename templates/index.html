@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo Twiiter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Material+Symbols+Filled" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
+</head>
+
+<body>
+
+    <!-- sidebar -->
+    <div class="sidebar">
+        <span class="material-symbols-outlined" id="pseudoIcon">
+            raven
+        </span>
+
+        <div class="sidebarOption">
+            <span class="material-symbols-outlined">
+                home
+            </span>
+            <h2>Home</h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-symbols-outlined">
+                    search
+                </span>
+            <h2>Explore</h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-symbols-outlined">
+                    notifications
+                </span>
+            <h2>Notifications</h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-symbols-outlined">
+                    mail
+                </span>
+            <h2>Messages</h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-symbols-outlined">
+                    bookmark
+                </span>
+            <h2>Bookmarks</h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-symbols-outlined">
+                    list_alt
+                </span>
+            <h2>Lists</h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-symbols-outlined">
+                    person_outline
+                </span>
+            <h2>Profile</h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-symbols-outlined">
+                    more_horiz
+                </span>
+            <h2>More</h2>
+        </div>
+
+        <button class="sidebar_tweet">Tweet</button>
+
+    </div>
+    <!-- sidebar -->
+
+    <!-- feed -->
+    <div class="feed" id="feed-container">
+        <div class="feedHeader">
+            <h2>Home</h2>
+        </div>
+
+        <!-- tweetbox -->
+        <div class="tweetBox">
+            <form>
+                <div class="tweetbox_input">
+                    <img src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" />
+                    <input type="text" id="tweetInput" placeholder="What's happening?" />
+                </div>
+                <button class="tweetBox_tweet" type="submit">Tweet</button>
+            </form>
+        </div>
+        <!-- tweetbox -->
+        <div class="post">
+            <div class="post_avatar">
+                <img src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" />
+            </div>
+
+            <div class="post_body">
+                <div class="post_header">
+                    <div class="post_headerText">
+                        <h3>
+                            User
+                            <span class="post_headerSpecial">
+                            <span class="material-symbols-outlined"
+                            id="verified">
+                                verified
+                        </span>@user
+                        </h3>
+                    </div>
+                    <div class="post_headerDescription">
+                        <p>
+                            I'm gonna end it all.
+                        </p>
+                    </div>
+                </div>
+                <div class="post_footer">
+                    <span class="material-symbols-outlined">
+                        chat_bubble_outline
+                    </span>
+                    <span class="material-symbols-outlined">
+                        repeat
+                    </span>
+                    <span class="material-symbols-outlined">
+                        favorite_border
+                    </span>
+                    <span class="material-symbols-outlined">
+                        share
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!--post-->
+
+        <!--post-->
+        <!-- feed -->
+
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

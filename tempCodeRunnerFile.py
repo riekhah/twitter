@@ -1,0 +1,10 @@
+ 'I want to eat hotdog. I will cook',
+    'I want to die',
+    'How to tie a rope',
+    'How to tie a rope around my neck',
+    'alone',
+    'I failed. I want to kill myself',
+    'I want to hang myself',
+    'How to overdose myself',
+    'I am drinking medicine',
+    'My life is not worth living'

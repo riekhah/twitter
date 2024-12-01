@@ -10,33 +10,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="index.css">
 
-    <style>
-        /* Style for the message section */
-        
-        .message-container {
-            display: none;
-            /* Hidden by default */
-            margin-top: 20px;
-        }
-        
-        .message {
-            background-color: #f0f0f0;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 8px;
-        }
-        
-        .message-header {
-            font-weight: bold;
-        }
-        /* Optional: Add some transitions for smooth toggling */
-        
-        .content-container {
-            transition: opacity 0.3s ease;
-        }
-    </style>
+    
 
 </head>
 
@@ -66,14 +42,14 @@
             <span class="material-symbols-outlined">
                 notifications
             </span>
-            <h2>Notifications</h2>
+            <h2><a href="#" id="notificationsOption">Notifications</a></h2>
         </div>
 
         <div class="sidebarOption" id="messagesOption">
             <span class="material-symbols-outlined">
                 mail
             </span>
-            <h2>Messages</h2>
+            <h2><a href="#" id="messagesOption">Messages</a></h2>
         </div>
 
         <div class="sidebarOption">
@@ -121,7 +97,7 @@
                 <form>
                     <div class="tweetbox_input">
                         <img src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" />
-                        <input type="text" id="tweetInput" placeholder="What's happening?" />
+                        <textarea id="tweetInput" placeholder="What's happening?" wrap="soft" cols="10" rows="3" maxlength="280"></textarea>
                     </div>
                     <button class="tweetBox_tweet" type="submit">Tweet</button>
                 </form>
@@ -161,72 +137,94 @@
         <!-- Home Content -->
 
         <!-- Message Content -->
-        <div class="message-container" id="messageContainer">
+         <div class="message-container" id="messageContainer">
             <div class="message">
-                <div class="message-header">User 1</div>
-                <div class="message-body">Hey, how's it going?</div>
+                <div class="message_avatar">
+                    <img
+                        src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" />
+                </div>
+            
+                <div class="message_body">
+                    <div class="message_header">
+                        <div class="message_headerText">
+                            <h3>
+                                User
+                                <span class="message_headerSpecial">
+                                    <span class="material-symbols-outlined" id="verified">verified</span>@user
+                                </span>
+                            </h3>
+                        </div>
+                        <div class="message_headerDescription">
+                            <p>Hey, how's it going?</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="message">
-                <div class="message-header">User 2</div>
-                <div class="message-body">Just wanted to check in!</div>
-            </div>
+        <!-- Message Content -->
         </div>
         <!-- Message Content -->
+
+        <!-- Notification Content -->
+        <div class="notification-container" id="notificationContainer">
+            <div class="notification">
+                <div class="notification_alert">
+                    <span class="material-symbols-outlined" id="alert">warning</span>
+                </div>
+                <div class="notification_header">
+                    <div class="notification_headerText">
+                        <h3>Your Tweet has alerted a distress signal.</h3>
+                    </div>
+                    <div class="notification_headerDescription">
+                        <p>*Insert preventive measure kineso*</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Notification Content -->
     </div>
     <!-- feed -->
 
-    <script>
-        // Get the elements
-        const homeTab = document.getElementById('homeTab');
-        const messagesOption = document.getElementById('messagesOption');
-        const homeContent = document.getElementById('homeContent');
-        const messageContainer = document.getElementById('messageContainer');
-        // Get the Tweet button
-        const tweetButton = document.querySelector('.sidebar_tweet');
+<script>
 
-        // Event listener for switching to Messages
-        messagesOption.addEventListener('click', function() {
-            // Hide home feed content and show messages
-            homeContent.style.display = 'none';
-            messageContainer.style.display = 'block';
+    document.addEventListener('DOMContentLoaded', function () {
+            const homeTab = document.getElementById('homeTab');
+            const messagesOption = document.getElementById('messagesOption');
+            const notificationsOption = document.getElementById('notificationsOption');
+            const homeContent = document.getElementById('homeContent');
+            const messageContainer = document.getElementById('messageContainer');
+            const notificationContainer = document.getElementById('notificationContainer');
+            const feedHeader = document.querySelector('.feedHeader h2');
+
+            function hideAllContainers() {
+                homeContent.style.display = 'none';
+                messageContainer.style.display = 'none';
+                notificationContainer.style.display = 'none';
+            }
+
+            function showHome() {
+                hideAllContainers();
+                homeContent.style.display = 'block';
+                feedHeader.textContent = 'Home';
+            }
+
+            homeTab.addEventListener('click', showHome);
+
+            messagesOption.addEventListener('click', function () {
+                hideAllContainers();
+                messageContainer.style.display = 'block';
+                feedHeader.textContent = 'Messages';
+            });
+
+            notificationsOption.addEventListener('click', function () {
+                hideAllContainers();
+                notificationContainer.style.display = 'block';
+                feedHeader.textContent = 'Notifications';
+            });
+
+            // Initialize home view
+            showHome();
         });
-
-        // Event listener for switching back to Home
-        homeTab.addEventListener('click', function() {
-            // Show home feed content and hide messages
-            homeContent.style.display = 'block';
-            messageContainer.style.display = 'none';
-        });
-
-        // Event listener for the Tweet button
-        tweetButton.addEventListener('click', function() {
-            // Debugging: Check if the button is clicked
-            console.log('Tweet button clicked');
-
-            // Create a new message element
-            const newMessage = document.createElement('div');
-            newMessage.className = 'message';
-            newMessage.innerHTML = `
-        <div class="message-header">Twitter</div>
-        <div class="message-body">Post Added</div>
-    `;
-
-            // Debugging: Check if the new message is created
-            console.log('New message element:', newMessage);
-
-            // Append the new message to the message container
-            messageContainer.appendChild(newMessage);
-
-            // Ensure the message container is visible
-            messageContainer.style.display = 'block';
-
-            // Debugging: Check if the message container now contains the new message
-            console.log('Message container contents:', messageContainer.innerHTML);
-
-            // Check if the message is visible
-            console.log('Message container display:', messageContainer.style.display);
-        });
-    </script>
+</script>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

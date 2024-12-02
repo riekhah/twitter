@@ -36,10 +36,12 @@ body {
     font-size: 27px;
 }
 
-.sidebarOption h2 {
+.sidebarOption h2, a {
+    color: inherit;
     font-weight: 800;
     font-size: 20px;
     margin-right: 20px;
+    text-decoration: none;
 }
 
 .sidebarOption:hover {
@@ -69,17 +71,24 @@ body {
 .sidebar {
     border-right: 1px solid #d5dbe0;
     flex: 0.2;
-    min-width: 250px;
+    min-width: 300px;
     margin-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
 }
 
 .feed {
-    flex: 0.5;
+    flex: 0.6;
     border-right: 1px solid #d5dbe0;
     min-width: fit-content;
+    min-width: 65%;
+    width: 65%;
+    max-width: 65%;
+    align-items: center;
     overflow-y: scroll;
+    box-sizing: border-box;
+    padding-right: 1px;
+    margin-right: -1px;
 }
 
 .feed_header {
@@ -121,6 +130,7 @@ body {
 .tweetBox form {
     display: flex;
     flex-direction: column;
+    word-break: break-all;
 }
 
 .tweetbox_input {
@@ -128,14 +138,20 @@ body {
     padding: 20px;
 }
 
-.tweetbox_input input {
+.tweetbox_input textarea {
     flex: 1;
     margin-left: 20px;
     font-size: 20px;
     border: none;
     outline: none;
     background-color: transparent;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    box-sizing: border-box;
+    resize: none;
 }
+
+
 
 .tweetBox button {
     background-color: #1da1f2;
@@ -160,10 +176,16 @@ body {
     align-items: flex-start;
     border-bottom: 1px solid #d5dbe0;
     padding-bottom: 10px;
+    width: 100%;
+    max-width: auto;
+    box-sizing: border-box;
 }
 
 .post_body {
-    padding: 20px;
+    padding: 10px;
+    width: 100%;
+    max-width: calc(100% - 80px);
+    overflow: break-word;
 }
 
 .post_footer {
@@ -192,7 +214,18 @@ body {
 
 .post_headerDescription {
     margin-bottom: 10px;
-    font-size: 15px
+    font-size: 15px;
+    width: 100%;
+}
+
+.post_headerDescription p {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 100%;
+    max-width: 100%;
+    line-height: 1.5;
+    padding: 5px 0;
 }
 
 .post_body {
@@ -202,13 +235,6 @@ body {
 
 .post_avatar {
     padding: 20px;
-}
-
-.inter-text {
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 200;
-    font-style: normal;
 }
 
 .chat-section {
@@ -291,6 +317,9 @@ body {
     padding: 8px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    border-radius: 15px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
 }
 
 .chat-input button {
@@ -299,8 +328,10 @@ body {
     background-color: #1da1f2;
     /* Twitter blue */
     color: white;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
 }
 
 .chat-input button:hover {
@@ -354,3 +385,89 @@ body {
     border: 2px solid red;
     background-color: #fdd;
 }
+
+
+ .notification-container {
+     display: none;
+ }
+
+ .notification {
+     display: flex;
+     border-bottom: 1px solid #d5dbe0;
+     padding: 20px;
+ }
+
+ .notification_alert {
+    align-content: center;
+    padding: 10px;
+    padding-left: 15;
+ }
+
+ .notification_alert #alert {
+     font-size: 50px;
+ }
+
+ .notification_header {
+     display: flex;
+     flex-direction: column;
+     flex: 1;
+     padding: 10px;
+ }
+
+ .notification_headerText {
+     margin-bottom: 8px;
+ }
+
+ .notification_headerText h3 {
+     font-size: 15px;
+     margin: 0;
+ }
+
+ .notification_headerDescription {
+     font-size: 15px;
+     line-height: 1.5;
+ }
+
+ .notification_headerDescription p {
+     margin: 0;
+     padding: 5px 0;
+ }
+
+ .content-container {
+     transition: opacity 0.3s ease;
+ }
+
+.content-container {
+    display: none;
+}
+
+.content-container.active {
+    display: block !important;
+}
+
+#homeContent {
+    display: block;
+}
+
+.message-container,
+.notification-container {
+    display: none;
+}
+
+#chatSectionContainer{
+    display: none;
+}
+
+
+.message-container.active,
+.notification-container.active {
+    display: block;
+}
+
+.inter-text {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+

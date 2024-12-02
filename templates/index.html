@@ -6,38 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pseudo Twitter</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Material+Symbols+Filled" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Material+Symbols+Filled"
+        rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-
-    <style>
-        /* Style for the message section */
-        
-        .message-container {
-            display: none;
-            /* Hidden by default */
-            margin-top: 20px;
-        }
-        
-        .message {
-            background-color: #f0f0f0;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 8px;
-        }
-        
-        .message-header {
-            font-weight: bold;
-        }
-        /* Optional: Add some transitions for smooth toggling */
-        
-        .content-container {
-            transition: opacity 0.3s ease;
-        }
-    </style>
-
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
@@ -66,14 +42,14 @@
             <span class="material-symbols-outlined">
                 notifications
             </span>
-            <h2>Notifications</h2>
+            <h2><a href="#" id="notificationsOption">Notifications</a></h2>
         </div>
 
         <div class="sidebarOption" id="messagesOption">
             <span class="material-symbols-outlined">
                 mail
             </span>
-            <h2>Messages</h2>
+            <h2><a href="#" id="messagesTab">Messages</a></h2>
         </div>
 
         <div class="sidebarOption">
@@ -120,8 +96,9 @@
             <div class="tweetBox">
                 <form>
                     <div class="tweetbox_input">
-                        <img src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" />
-                        <input type="text" id="tweetInput" placeholder="What's happening?" />
+                        <img
+                            src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" />
+                        <textarea id="tweetInput" placeholder="What's happening?" wrap="soft" cols="10" rows="3" maxlength="280"></textarea>
                     </div>
                     <button class="tweetBox_tweet" type="submit">Tweet</button>
                 </form>
@@ -131,7 +108,8 @@
             <!-- Post -->
             <div class="post">
                 <div class="post_avatar">
-                    <img src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" />
+                    <img
+                        src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" />
                 </div>
 
                 <div class="post_body">
@@ -162,6 +140,7 @@
 
 
 
+<<<<<<< HEAD
     </div>
 
 
@@ -171,9 +150,29 @@
         <!-- Chat Section -->
         <div class="chat-section" id="chatSection" style="display: none;">
             <div class="chat-header" id="chatHeader">
+=======
+        <!-- Message Content -->
+        <div class="message-container" id="messageContainer">
+            <div class="message" data-user="User 1">
+            <div id="messageContainer" class="message-container"></div>
+            <div class="message-header">User 1</div>
+            <div class="message-body">Hey, how's it going?</div>
+            </div>
+            <div class="message" data-user="User 2">
+            <div class="message-header">User 2</div>
+            <div class="message-body">Just wanted to check in!</div>
+            </div>
+        </div>
+    
+    
+        <div class="chat-section-container" id="chatSectionContainer">
+            <!-- Chat Section -->
+            <div class="chat-section" id="chatSection" style="display: none;">
+            <div class="chat-header" id="chatHeader"></div>
+>>>>>>> c2423ee110117a9d6b2943a18b781fac5156a7d1
                 <h3>Chat with <span id="chatUserName"></span></h3>
-                <button id="backToMessages">
-                    <span class="material-symbols-outlined">arrow_back</span>
+                <button id="backToMessages"></button>
+                <span class="material-symbols-outlined">arrow_back</span>
                 </button>
             </div>
             <div class="chat-messages" id="chatMessages"></div>
@@ -181,10 +180,29 @@
                 <input type="text" id="chatInput" placeholder="Type your message..." />
                 <button id="sendMessage">Send</button>
             </div>
-        </div>
+            </div>
+    
+            <!-- Notification Content /// feel free to remove -->
+            <div class="notification-container" id="notificationContainer">
+            <div class="notification">
+                <div class="notification_alert">
+                        <span class="material-symbols-outlined" id="alert">warning</span>
+                    </div>
+                    <div class="notification_header">
+                        <div class="notification_headerText">
+                            <h3>Your Tweet has alerted a distress signal.</h3>
+                        </div>
+                        <div class="notification_headerDescription">
+                            <p>*Insert preventive measure kineso*</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Notification Content -->
     </div>
 
 
+<<<<<<< HEAD
     <!-- Message Content -->
     <div class="message-container" id="messageContainer">
         <div class="message" data-user="User 1">
@@ -198,6 +216,60 @@
         </div>
     </div>
 
+=======
+
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get elements
+            const homeTab = document.getElementById('homeTab');
+            const messagesTab = document.getElementById('messagesTab');
+            const notificationsOption = document.getElementById('notificationsOption');
+            const homeContent = document.getElementById('homeContent');
+            const messageContainer = document.getElementById('messageContainer');
+            const notificationContainer = document.getElementById('notificationContainer');
+            const feedHeader = document.querySelector('.feedHeader h2');
+            const chatSectionContainer = document.getElementById('chatSectionContainer');
+
+            // Add preventDefault to links
+            function handleClick(e) {
+                e.preventDefault();
+            }
+
+            homeTab.addEventListener('click', handleClick);
+            messagesTab.addEventListener('click', handleClick);
+            notificationsOption.addEventListener('click', handleClick);
+
+            function hideAllContainers() {
+                [homeContent, messageContainer, notificationContainer, chatSectionContainer].forEach(container => {
+                    if (container) container.style.display = 'none';
+                });
+            }
+
+            function showContainer(container, headerText, showChat = false) {
+                hideAllContainers();
+                if (container) {
+                    container.style.display = 'block';
+                    feedHeader.textContent = headerText;
+                    if (showChat && container === messageContainer && chatSectionContainer) {
+                        chatSectionContainer.style.display = 'block';
+                    }
+                }
+            }
+
+            // Event listeners
+            homeTab.addEventListener('click', () => showContainer(homeContent, 'Home'));
+            messagesTab.addEventListener('click', () => showContainer(messageContainer,  'Messages', true));
+            notificationsOption.addEventListener('click', () => showContainer(notificationContainer, 'Notifications'));
+
+            // Show home by default
+            showContainer(homeContent, 'Home');
+        });
+    </script>
+
+>>>>>>> c2423ee110117a9d6b2943a18b781fac5156a7d1
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 

@@ -3,61 +3,51 @@ document.addEventListener('DOMContentLoaded', function() {
     const feedContainer = document.getElementById('feed-container');
     const messageContainer = document.getElementById('messageContainer');
     const tweetInput = document.getElementById('tweetInput');
+    let newPost = null; // For tracking dynamically added tweets
+
 
     tweetForm.addEventListener('submit', function(e) {
         e.preventDefault();
-
         const tweetText = tweetInput.value.trim();
-
-        if (!tweetText) {
-            return;
-        }
+        if (!tweetText) return;
 
         fetch('/submitTweet', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ tweetText })
             })
             .then(response => response.json())
             .then(data => {
-                const newPost = document.createElement('div');
+                newPost = document.createElement('div');
                 newPost.className = 'post';
                 newPost.innerHTML = `
-                    <div class="post_avatar">
-                        <img src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" />
-                    </div>
-                    <div class="post_body">
-                        <div class="post_header">
-                            <div class="post_headerText">
-                                <h3>
-                                    User
-                                    <span class="post_headerSpecial">@user</span>
-                                </h3>
-                            </div>
-                            <div class="post_headerDescription">
-                                <p>${tweetText}</p>
-                            </div>
+                <div class="post_avatar">
+                    <img src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" />
+                </div>
+                <div class="post_body">
+                    <div class="post_header">
+                        <div class="post_headerText">
+                            <h3>User <span class="post_headerSpecial">@user</span></h3>
                         </div>
-                        <div class="post_footer">
-                            <span class="material-symbols-outlined">chat_bubble_outline</span>
-                            <span class="material-symbols-outlined">repeat</span>
-                            <span class="material-symbols-outlined">favorite_border</span>
-                            <span class="material-symbols-outlined">share</span>
-                        </div>
+                        <div class="post_headerDescription"><p>${tweetText}</p></div>
                     </div>
-                `;
-                feedContainer.appendChild(newPost);
-
-                tweetInput.value = '';
-
-                if (data.prediction === 1) {
-                    showHelpNotification();
+                    <div class="post_footer">
+                        <span class="material-symbols-outlined">chat_bubble_outline</span>
+                        <span class="material-symbols-outlined">repeat</span>
+                        <span class="material-symbols-outlined">favorite_border</span>
+                        <span class="material-symbols-outlined">share</span>
+                    </div>
+                </div>
+            `;
+                if (window.getComputedStyle(messageContainer).display !== 'block') {
+                    feedContainer.appendChild(newPost);
                 }
+                tweetInput.value = '';
+                if (data.prediction === 1) showHelpNotification();
             })
             .catch(error => console.error("Error sending tweet:", error));
     });
+
 
     let isSupportMessageShown = false;
 
@@ -185,6 +175,11 @@ document.addEventListener('DOMContentLoaded', function() {
     backToMessages.addEventListener('click', function() {
         chatSection.style.display = 'none';
         messageContainer.style.display = 'block';
+        tweetForm.style.display = 'none';
+        tweetButton.style.display = 'none';
+        newPost.style.display = 'none';
+        tweetForm.style.display = 'none';
+
     });
 });
 
@@ -218,13 +213,30 @@ const messageContainer = document.getElementById('messageContainer');
 const tweetButton = document.querySelector('.sidebar_tweet');
 
 messagesOption.addEventListener('click', function() {
+    // Hide home content and tweets when viewing messages
     homeContent.style.display = 'none';
     messageContainer.style.display = 'block';
+
+    // Ensure tweet form and new posts are hidden
+    tweetForm.style.display = 'none';
+    tweetButton.style.display = 'none';
+    feedContainer.style.display = 'none'; // Hides all posts within the feed container
+
+    if (feedContainer) {
+        feedContainer.style.display = 'none'; // Ensures the entire post feed is hidden
+    }
+
 });
 
+// Ensure HomeTab restores visibility correctly
 homeTab.addEventListener('click', function() {
     homeContent.style.display = 'block';
     messageContainer.style.display = 'none';
+
+    // Show tweet form and feed when returning to Home
+    tweetForm.style.display = 'block';
+    tweetButton.style.display = 'block';
+    feedContainer.style.display = 'block'; // Restores the post feed
 });
 
 tweetButton.addEventListener('click', function() {

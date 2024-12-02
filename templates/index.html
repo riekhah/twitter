@@ -1,234 +1,204 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pseudo Twitter</title>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Material+Symbols+Filled" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pseudo Twitter</title>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Material+Symbols+Filled" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 
-    <style>
-        /* Style for the message section */
-        
-        .message-container {
-            display: none;
-            /* Hidden by default */
-            margin-top: 20px;
-        }
-        
-        .message {
-            background-color: #f0f0f0;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 8px;
-        }
-        
-        .message-header {
-            font-weight: bold;
-        }
-        /* Optional: Add some transitions for smooth toggling */
-        
-        .content-container {
-            transition: opacity 0.3s ease;
-        }
-    </style>
+        <style>
+            /* Style for the message section */
+            
+            .message-container {
+                display: none;
+                /* Hidden by default */
+                margin-top: 20px;
+            }
+            
+            .message {
+                background-color: #f0f0f0;
+                padding: 10px;
+                margin: 10px 0;
+                border-radius: 8px;
+            }
+            
+            .message-header {
+                font-weight: bold;
+            }
+            /* Optional: Add some transitions for smooth toggling */
+            
+            .content-container {
+                transition: opacity 0.3s ease;
+            }
 
-</head>
+            
+        </style>
 
-<body>
+    </head>
 
-    <!-- sidebar -->
-    <div class="sidebar">
-        <span class="material-symbols-outlined" id="pseudoIcon">
-            raven
-        </span>
+    <body>
 
-        <div class="sidebarOption">
-            <span class="material-symbols-outlined">
-                home
+        <!-- sidebar -->
+        <div class="sidebar">
+            <span class="material-symbols-outlined" id="pseudoIcon">
+                raven
             </span>
-            <h2><a href="#" id="homeTab">Home</a></h2>
+
+            <div class="sidebarOption">
+                <span class="material-symbols-outlined">
+                    home
+                </span>
+                <h2><a href="#" id="homeTab">Home</a></h2>
+            </div>
+
+            <div class="sidebarOption">
+                <span class="material-symbols-outlined">
+                    search
+                </span>
+                <h2>Explore</h2>
+            </div>
+
+            <div class="sidebarOption">
+                <span class="material-symbols-outlined">
+                    notifications
+                </span>
+                <h2>Notifications</h2>
+            </div>
+
+            <div class="sidebarOption" id="messagesOption">
+                <span class="material-symbols-outlined">
+                    mail
+                </span>
+                <h2>Messages</h2>
+            </div>
+
+            <div class="sidebarOption">
+                <span class="material-symbols-outlined">
+                    bookmark
+                </span>
+                <h2>Bookmarks</h2>
+            </div>
+
+            <div class="sidebarOption">
+                <span class="material-symbols-outlined">
+                    list_alt
+                </span>
+                <h2>Lists</h2>
+            </div>
+
+            <div class="sidebarOption">
+                <span class="material-symbols-outlined">
+                    person_outline
+                </span>
+                <h2>Profile</h2>
+            </div>
+
+            <div class="sidebarOption">
+                <span class="material-symbols-outlined">
+                    more_horiz
+                </span>
+                <h2>More</h2>
+            </div>
+
+            <button class="sidebar_tweet">Tweet</button>
+
         </div>
+        <!-- sidebar -->
 
-        <div class="sidebarOption">
-            <span class="material-symbols-outlined">
-                search
-            </span>
-            <h2>Explore</h2>
-        </div>
+        <!-- feed -->
+        <div class="feed" id="feed-container">
+            <div class="feedHeader">
+                <h2>Home</h2>
+            </div>
 
-        <div class="sidebarOption">
-            <span class="material-symbols-outlined">
-                notifications
-            </span>
-            <h2>Notifications</h2>
-        </div>
+            <div class="content-container" id="homeContent">
+                <!-- tweetbox -->
+                <div class="tweetBox">
+                    <form>
+                        <div class="tweetbox_input">
+                            <img src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" />
+                            <input type="text" id="tweetInput" placeholder="What's happening?" />
+                        </div>
+                        <button class="tweetBox_tweet" type="submit">Tweet</button>
+                    </form>
+                </div>
+                <!-- tweetbox -->
 
-        <div class="sidebarOption" id="messagesOption">
-            <span class="material-symbols-outlined">
-                mail
-            </span>
-            <h2>Messages</h2>
-        </div>
-
-        <div class="sidebarOption">
-            <span class="material-symbols-outlined">
-                bookmark
-            </span>
-            <h2>Bookmarks</h2>
-        </div>
-
-        <div class="sidebarOption">
-            <span class="material-symbols-outlined">
-                list_alt
-            </span>
-            <h2>Lists</h2>
-        </div>
-
-        <div class="sidebarOption">
-            <span class="material-symbols-outlined">
-                person_outline
-            </span>
-            <h2>Profile</h2>
-        </div>
-
-        <div class="sidebarOption">
-            <span class="material-symbols-outlined">
-                more_horiz
-            </span>
-            <h2>More</h2>
-        </div>
-
-        <button class="sidebar_tweet">Tweet</button>
-
-    </div>
-    <!-- sidebar -->
-
-    <!-- feed -->
-    <div class="feed" id="feed-container">
-        <div class="feedHeader">
-            <h2>Home</h2>
-        </div>
-
-        <div class="content-container" id="homeContent">
-            <!-- tweetbox -->
-            <div class="tweetBox">
-                <form>
-                    <div class="tweetbox_input">
+                <!-- Post -->
+                <div class="post">
+                    <div class="post_avatar">
                         <img src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" />
-                        <input type="text" id="tweetInput" placeholder="What's happening?" />
                     </div>
-                    <button class="tweetBox_tweet" type="submit">Tweet</button>
-                </form>
-            </div>
-            <!-- tweetbox -->
 
-            <!-- Post -->
-            <div class="post">
-                <div class="post_avatar">
-                    <img src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" />
-                </div>
-
-                <div class="post_body">
-                    <div class="post_header">
-                        <div class="post_headerText">
-                            <h3>
-                                User
-                                <span class="post_headerSpecial">
-                                    <span class="material-symbols-outlined" id="verified">verified</span>@user
-                                </span>
-                            </h3>
+                    <div class="post_body">
+                        <div class="post_header">
+                            <div class="post_headerText">
+                                <h3>
+                                    User
+                                    <span class="post_headerSpecial">
+                                        <span class="material-symbols-outlined" id="verified">verified</span>@user
+                                    </span>
+                                </h3>
+                            </div>
+                            <div class="post_headerDescription">
+                                <p>I'm gonna end it all.</p>
+                            </div>
                         </div>
-                        <div class="post_headerDescription">
-                            <p>I'm gonna end it all.</p>
+                        <div class="post_footer">
+                            <span class="material-symbols-outlined">chat_bubble_outline</span>
+                            <span class="material-symbols-outlined">repeat</span>
+                            <span class="material-symbols-outlined">favorite_border</span>
+                            <span class="material-symbols-outlined">share</span>
                         </div>
                     </div>
-                    <div class="post_footer">
-                        <span class="material-symbols-outlined">chat_bubble_outline</span>
-                        <span class="material-symbols-outlined">repeat</span>
-                        <span class="material-symbols-outlined">favorite_border</span>
-                        <span class="material-symbols-outlined">share</span>
-                    </div>
                 </div>
+                <!-- Post -->
             </div>
-            <!-- Post -->
-        </div>
-        <!-- Home Content -->
+            <!-- Home Content -->
 
-        <!-- Message Content -->
-        <div class="message-container" id="messageContainer">
-            <div class="message">
-                <div class="message-header">User 1</div>
-                <div class="message-body">Hey, how's it going?</div>
-            </div>
-            <div class="message">
-                <div class="message-header">User 2</div>
-                <div class="message-body">Just wanted to check in!</div>
-            </div>
+     
+
         </div>
-        <!-- Message Content -->
+
+           <!-- Message Content -->
+    <div class="message-container" id="messageContainer">
+        <div class="message" data-user="User 1">
+            <div id="messageContainer" class="message-container"></div>
+            <div class="message-header">User 1</div>
+            <div class="message-body">Hey, how's it going?</div>
+        </div>
+        <div class="message" data-user="User 2">
+            <div class="message-header">User 2</div>
+            <div class="message-body">Just wanted to check in!</div>
+        </div>
     </div>
-    <!-- feed -->
 
-    <script>
-        // Get the elements
-        const homeTab = document.getElementById('homeTab');
-        const messagesOption = document.getElementById('messagesOption');
-        const homeContent = document.getElementById('homeContent');
-        const messageContainer = document.getElementById('messageContainer');
-        // Get the Tweet button
-        const tweetButton = document.querySelector('.sidebar_tweet');
 
-        // Event listener for switching to Messages
-        messagesOption.addEventListener('click', function() {
-            // Hide home feed content and show messages
-            homeContent.style.display = 'none';
-            messageContainer.style.display = 'block';
-        });
+        <div class="chat-section-container" id="chatSectionContainer">
+            <!-- Chat Section -->
+            <div class="chat-section" id="chatSection" style="display: none;">
+                <div class="chat-header" id="chatHeader">
+                    <h3>Chat with <span id="chatUserName"></span></h3>
+                    <button id="backToMessages">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                    </button>
+                </div>
+                <div class="chat-messages" id="chatMessages"></div>
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Type your message..." />
+                    <button id="sendMessage">Send</button>
+                </div>
+            </div>
+        </div>
 
-        // Event listener for switching back to Home
-        homeTab.addEventListener('click', function() {
-            // Show home feed content and hide messages
-            homeContent.style.display = 'block';
-            messageContainer.style.display = 'none';
-        });
 
-        // Event listener for the Tweet button
-        tweetButton.addEventListener('click', function() {
-            // Debugging: Check if the button is clicked
-            console.log('Tweet button clicked');
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </body>
 
-            // Create a new message element
-            const newMessage = document.createElement('div');
-            newMessage.className = 'message';
-            newMessage.innerHTML = `
-        <div class="message-header">Twitter</div>
-        <div class="message-body">Post Added</div>
-    `;
-
-            // Debugging: Check if the new message is created
-            console.log('New message element:', newMessage);
-
-            // Append the new message to the message container
-            messageContainer.appendChild(newMessage);
-
-            // Ensure the message container is visible
-            messageContainer.style.display = 'block';
-
-            // Debugging: Check if the message container now contains the new message
-            console.log('Message container contents:', messageContainer.innerHTML);
-
-            // Check if the message is visible
-            console.log('Message container display:', messageContainer.style.display);
-        });
-    </script>
-
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-</body>
-
-</html>
+    </html>

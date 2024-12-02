@@ -210,3 +210,147 @@ body {
     font-weight: 200;
     font-style: normal;
 }
+
+.chat-section {
+    display: none;
+    padding: 10px;
+    max-width: 3000px;
+    margin: 0 auto;
+    background-color: #e6ecf0;
+    /* Twitter's light background color */
+    border-radius: 10px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    /* Stack elements vertically */
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    /* Allow this section to take the remaining space */
+    overflow-y: auto;
+    /* Enable scrolling for messages */
+    margin-bottom: 10px;
+    /* Ensure there's space for the input box */
+}
+
+.chat-message {
+    display: flex;
+    flex-direction: column;
+    /* Stack username and message vertically */
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 20px;
+    max-width: 75%;
+}
+
+.chat-message.you {
+    background-color: #1da1f2;
+    /* Twitter blue */
+    color: white;
+    margin-left: auto;
+    /* Align the user's message to the right */
+}
+
+.chat-message.other {
+    background-color: white;
+    /* Light gray for other user */
+    color: #000;
+}
+
+.chat-message .chat-message-username {
+    font-weight: bold;
+    margin-bottom: 20px;
+    /* Large space between username and message */
+}
+
+.chat-message .chat-message-content {
+    font-size: 14px;
+}
+
+.chat-input {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background-color: #e6ecf0;
+    /* Same background color as the chat */
+    border-top: 1px solid #ccc;
+    /* Add a separator line between messages and input */
+    width: 100%;
+}
+
+.chat-input input {
+    flex-grow: 1;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.chat-input button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #1da1f2;
+    /* Twitter blue */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-input button:hover {
+    background-color: #1991db;
+    /* Darker blue on hover */
+}
+
+.message {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    /* Change cursor to indicate interactivity */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    /* Smooth hover effect */
+}
+
+.message:hover {
+    background-color: #e0e0e0;
+    /* Slightly darker background */
+    transform: scale(1.02);
+    /* Slightly enlarge the message */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    /* Add subtle shadow */
+}
+
+.message-header {
+    font-weight: bold;
+}
+
+#messagesOption {
+    position: relative;
+}
+
+
+/* Red circle indicator for new messages inside the message icon */
+
+#messagesOption .new-message-indicator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.message.flagged {
+    border: 2px solid red;
+    background-color: #fdd;
+}

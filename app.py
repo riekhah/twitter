@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
 import pandas as pd
 import numpy as np
 import re
@@ -14,6 +15,9 @@ from nltk.corpus import stopwords
 
 # Initialize Flask app
 app = Flask(__name__)
+
+# Enable CORS for Chrome Extension
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Function to translate text to English
 def translate_to_english(text):
@@ -220,26 +224,6 @@ def get_support_message_for_topic(topic_index):
 def predict_tweet_intention_with_confidence(tweet, model, vectorizer, nmf_suicidal_model=None, 
                                            tfidf_combined=None, feature_names_combined=None, 
                                            n_top_words=5, threshold=0.3):
-    """
-    Predicts the intention of a given tweet and provides a confidence score.
-    If classified as suicidal based on the confidence threshold, it also interprets
-    the most relevant suicidal topic using the NMF model (if provided).
-
-    Args:
-        tweet (str): The tweet text to predict on.
-        model: The trained LinearSVC model (trained on original TF-IDF).
-        vectorizer: The fitted TfidfVectorizer (fitted on original data).
-        nmf_suicidal_model: The trained NMF model for suicidal tweets (optional, for interpretation).
-        tfidf_combined: The combined TF-IDF vectorizer for NMF.
-        feature_names_combined (list): List of feature names (words) from the combined TF-IDF (optional, for interpretation).
-        n_top_words (int): Number of top words to display for the dominant topic in interpretation.
-        threshold (float): The probability threshold for classifying as 'suicide'.
-
-    Returns:
-        tuple: A tuple containing the predicted intention ('suicide' or 'not suicide'),
-               the confidence score (probability of 'suicide'), and a dictionary
-               with dominant topic information if classified as 'suicide', otherwise None.
-    """
     try:
         english_tweet = translate_to_english(tweet)
     except Exception as e:

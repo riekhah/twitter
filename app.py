@@ -77,7 +77,7 @@ def get_clean(x):
 
 
 
-def get_clean_topic_modeling_v2(x):
+def get_clean_topic_modeling_v2(x): # #note: THIS IS NMF VECTORIZER
     """
     Clean tweet text for topic modeling, keeping emoji tokens with colons and removing custom stopwords.
     Args:
@@ -126,8 +126,8 @@ def load_models():
     """Load pre-trained models from .pkl files."""
     print("Loading pre-trained models...")
     
-    # Define the path to the trained_model directory
-    model_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'trained_model')
+    # Define the path to the trained_model directory (now under twitter/trained_model)
+    model_dir = os.path.join(os.path.dirname(__file__), 'trained_model')
     
     try:
         # Load LinearSVC model
@@ -164,6 +164,13 @@ def load_models():
 
 # Initialize all models and vectorizers
 model, vectorizer, nmf_model, tfidf_combined, feature_names_combined = load_models()
+
+
+
+
+
+
+
 
 
 def get_support_message_for_topic(topic_index):
@@ -224,6 +231,8 @@ def get_support_message_for_topic(topic_index):
 def predict_tweet_intention_with_confidence(tweet, model, vectorizer, nmf_suicidal_model=None, 
                                            tfidf_combined=None, feature_names_combined=None, 
                                            n_top_words=5, threshold=0.3):
+    
+
     try:
         english_tweet = translate_to_english(tweet)
     except Exception as e:
@@ -231,6 +240,7 @@ def predict_tweet_intention_with_confidence(tweet, model, vectorizer, nmf_suicid
         english_tweet = tweet
 
     # Use the original preprocessing function for the primary classifier
+    # #warning
     cleaned_tweet_original = get_clean(english_tweet)
 
     if not cleaned_tweet_original:
@@ -257,8 +267,21 @@ def predict_tweet_intention_with_confidence(tweet, model, vectorizer, nmf_suicid
     interpretation = None
     # Only perform topic interpretation if the tweet is classified as suicidal and NMF models are provided
     if prediction == 'suicide' and nmf_suicidal_model is not None and feature_names_combined is not None and tfidf_combined is not None:
+
+    # #end-warning
+
+
+
+
+
+
+
+        # #note NMF ONLY THIS PART
+
         # Use the topic modeling preprocessing function for NMF interpretation
         cleaned_tweet_topic_modeling = get_clean_topic_modeling_v2(english_tweet)
+
+
 
         if cleaned_tweet_topic_modeling:
             # Transform the cleaned tweet using the combined TF-IDF vectorizer for NMF
@@ -281,6 +304,8 @@ def predict_tweet_intention_with_confidence(tweet, model, vectorizer, nmf_suicid
                 'top_words': top_words.tolist() if hasattr(top_words, 'tolist') else list(top_words)
             }
 
+            # #end-note
+
     return prediction, confidence, interpretation
 
 
@@ -288,6 +313,8 @@ def predict_tweet_intention_with_confidence(tweet, model, vectorizer, nmf_suicid
 def index():
     """Render the frontend."""
     return render_template('index.html')
+
+
 
 @app.route('/submitTweet', methods=['POST'])
 def submit_tweet():
@@ -318,6 +345,11 @@ def submit_tweet():
             n_top_words=n_top_words,
             threshold=threshold
         )
+
+
+
+
+        # #note: ONLY PRINTING and RESULTING... all prediction happened above
 
         # Print results to console
         print(f"Classification: {prediction}")

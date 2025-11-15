@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Extension Icons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            background: #1da1f2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>🛡️ Generate Extension Icons</h1>
+    <p>Click the buttons below to download the icon files</p>
+    
+    <div>
+        <canvas id="icon16" width="16" height="16"></canvas>
+        <canvas id="icon48" width="48" height="48"></canvas>
+        <canvas id="icon128" width="128" height="128"></canvas>
+    </div>
+    
+    <div>
+        <button onclick="downloadIcon(16)">Download 16x16</button>
+        <button onclick="downloadIcon(48)">Download 48x48</button>
+        <button onclick="downloadIcon(128)">Download 128x128</button>
+        <button onclick="downloadAll()">Download All</button>
+    </div>
+    
+    <script>
+        function drawIcon(size) {
+            const canvas = document.getElementById(`icon${size}`);
+            const ctx = canvas.getContext('2d');
+            
+            // Background
+            ctx.fillStyle = '#1da1f2';
+            ctx.fillRect(0, 0, size, size);
+            
+            // Shield emoji
+            ctx.font = `${size * 0.6}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('🛡️', size / 2, size / 2);
+        }
+        
+        function downloadIcon(size) {
+            drawIcon(size);
+            const canvas = document.getElementById(`icon${size}`);
+            const link = document.createElement('a');
+            link.download = `icon${size}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        function downloadAll() {
+            downloadIcon(16);
+            setTimeout(() => downloadIcon(48), 500);
+            setTimeout(() => downloadIcon(128), 1000);
+        }
+        
+        // Draw all icons on load
+        window.onload = function() {
+            drawIcon(16);
+            drawIcon(48);
+            drawIcon(128);
+        };
+    </script>
+</body>
+</html>
